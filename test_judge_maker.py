@@ -21,3 +21,12 @@ def test_make_judge_no1():
 
     result = make_judge("E", [14, 17, 40, 70, 40, 50, 50, 60, 35, 50])
     assert result == 3
+
+    try:
+        result = make_judge("G", [14, 17, 40, 70, 40, 50, 50, 60, 35, 50])
+        assert False
+    except Exception as e:
+        assert (
+            e.args[0]
+            == "gradeは'A', 'B', 'C', 'D', 'E'のいずれかでなければなりません。"
+        )

@@ -4,6 +4,21 @@ import os
 
 def make_judge(grade, points):
     # 判定基準
+    # 成績のバリデーション
+    if grade not in ["A", "B", "C", "D", "E"]:
+        raise ValueError(
+            "gradeは'A', 'B', 'C', 'D', 'E'のいずれかでなければなりません。"
+        )
+
+    # 点数のバリデーション
+    if (
+        not isinstance(points, list)
+        or len(points) != 10
+        or not all(isinstance(score, int) and 0 <= score <= 100 for score in points)
+    ):
+        raise ValueError(
+            "pointsは整数値0～100の数値が10個のリストでなければなりません。"
+        )
     if any(score < 10 for score in points):
         return 3  # 不合格
     if sum(1 for score in points if score <= 30) >= 3:
