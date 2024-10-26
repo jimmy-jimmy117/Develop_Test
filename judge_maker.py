@@ -4,10 +4,10 @@ import os
 
 def make_judge(grade, points):
     # 判定基準
-    if points.count(30) >= 3:
-        return 2  # 再テスト
     if any(score < 10 for score in points):
         return 3  # 不合格
+    if sum(1 for score in points if score <= 30) >= 3:
+        return 2  # 再テスト
     if grade in ["A", "B", "C"]:
         return 1  # 合格
     elif grade == "D":
